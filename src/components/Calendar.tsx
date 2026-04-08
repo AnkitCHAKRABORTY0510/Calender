@@ -130,7 +130,7 @@ export function Calendar() {
         onTouchEnd={() => setHoverTease(null)}
         onTouchCancel={() => setHoverTease(null)}
         onClick={() => { setHoverTease(null); navigate('next'); }}
-        onPanEnd={(e, info) => {
+        onPanEnd={(_, info) => {
           if (info.offset.y < -20) {
             setHoverTease(null); 
             navigate('next'); // Swiping bottom-right up structurally turns to the next page
@@ -160,7 +160,7 @@ export function Calendar() {
         onTouchEnd={() => setHoverTease(null)}
         onTouchCancel={() => setHoverTease(null)}
         onClick={() => { setHoverTease(null); navigate('prev'); }}
-        onPanEnd={(e, info) => {
+        onPanEnd={(_, info) => {
           if (info.offset.y < -20) {
             setHoverTease(null); 
             navigate('prev'); // Swiping bottom-left up reverses the page structurally

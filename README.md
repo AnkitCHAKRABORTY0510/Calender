@@ -1,5 +1,7 @@
 # 📅 3D Kinetic Calendar
 
+![Calendar Interface Screenshot](./README-assets/website-screenshot.png)
+
 A beautifully structured, highly interactive print-style digital calendar. Built from the ground up prioritizing fluid kinetic physics, thematic environmental aesthetics, and seamless multi-date spanning logic natively. 
 
 ## 🌟 Key Features
@@ -8,15 +10,23 @@ A beautifully structured, highly interactive print-style digital calendar. Built
 - **Kindle-Style Page Flips:** Swiping vertically, clicking, or hovering over the literal bottom corner "fold" zones of the calendar natively triggers a structural physics page peeling transition into the previous or next calendar month.
 - **Multi-Day Range Selection Tracking:** Clicking multiple distinct dates bridges an overarching selection directly across the internal engine! Spanning dates mechanically interlocks a continuous highlighting ribbon bridging physically underneath the dates. 
 - **Atomic Memo Persistence:** Any contextual text you drop inside a single day, an overarching multi-day range bounds, or into the generic month header is automatically mapped and pinned securely into your local storage database! Overlapping selections mechanically stack isolated color-changing bands intelligently using structural hue rotation!
+  
+  ![Monthly Memo Storage Demo](./README-assets/Month-Memo-demo.png)
 - **Seasonal Environment Themes:** Every chronological month natively tracks a hardcoded atmospheric ambient image specifically clipped to absolute vector masks bounding against corresponding palette accents mathematically syncing the theme.
 - **Mobile Responsive Anchoring:** Uses explicit `max-width` tracking and structural viewport clamping limits rigorously to safely squeeze the geometry accurately into mobile screens effortlessly without shattering nested grid logic arrays mechanically.
 
 ## 🖱️ How To Use
 
 - **Write Single Day Notes:** Click any specific active date block. Its UI color will brightly invert. Start typing directly into the left hand "Notes" console — a classic solid indicator dot will dynamically dive right underneath the number confirming its explicit atomic connection!
+  
+  ![Adding a Day Note](./README-assets/Add-day-note.png)
 - **Span Multi-Date Ranges:** Click your initial start date, then click another chronologically later end-date. The calendar completely maps a continuous soft visual background ribbon connecting all cells structurally! Text data input here maps explicitly against the entirety of the visual timeline bounds seamlessly.
+  
+  ![Spanning Multi-date Notes](./README-assets/Multi-range-note.png)
 - **Clear Selections:** Tap any visual spatial void natively padding the outside edges or external tracking gaps dynamically dropping your currently forming active selection boundary locks completely back to zero instantly!
 - **Turn The Page:** The actual bottom-left and bottom-right extreme corners structurally behave like peelable paper geometry natively. Tap or physically swipe/pan over tracking spots vertically up to pull the paper dynamically backwards or flip it aggressively forward! 
+  
+  ![Page Turn Interaction](./README-assets/page-turn.gif)
 
 ## 🛠️ Built With
 - **Frontend Architecture:** React + TypeScript

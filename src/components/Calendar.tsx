@@ -68,7 +68,7 @@ export function Calendar() {
       }}
     >
       {/* Underlying Stack Layer (always renders the physically next page!) */}
-      <div className="absolute inset-0 w-full h-full bg-white rounded-[4px] filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col z-0 pointer-events-none">
+      <div className="absolute inset-0 w-full h-full bg-white rounded-[4px] filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.05)] flex flex-col z-0 pointer-events-none">
         <Header currentMonth={nextMonth} theme={nextTheme} />
         <Body 
           currentMonth={nextMonth} 
@@ -89,7 +89,7 @@ export function Calendar() {
           initial="enter"
           animate={isFlipping ? "center" : (hoverTease ? 'tease' : 'center')}
           exit="exit"
-          className="absolute inset-0 w-full h-full bg-white rounded-[4px] filter drop-shadow-[0_15px_40px_rgba(0,0,0,0.12)] overflow-hidden flex flex-col"
+          className="absolute inset-0 w-full h-full bg-white rounded-[4px] filter drop-shadow-[0_15px_40px_rgba(0,0,0,0.12)] flex flex-col"
           style={{ transformOrigin: 'top center', backfaceVisibility: 'hidden' }}
         >
           <Header currentMonth={currentMonth} theme={selectedTheme} />

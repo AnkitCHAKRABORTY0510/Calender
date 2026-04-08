@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { type Theme } from '../data/themes';
 import { useDayNotes, formatDateString, getActiveNotesIndices, type SelectionState } from '../hooks/useDayNotes';
+import { INDIAN_HOLIDAYS } from '../data/holidays';
 import { InteractiveDayCell } from './InteractiveDayCell';
 
 /**
@@ -139,6 +140,9 @@ export function Body({ currentMonth, days, firstDayOffset, theme, isToday }: Bod
 
               const dateStr = formatDateString(cell.dateObj);
               const hasNote = activeIndices.singleNotes.has(dateStr);
+              
+              // Map against dictionary dates natively
+              const holidayMatch = INDIAN_HOLIDAYS.find(h => h.date === dateStr);
 
               const handleCellClick = (e: React.MouseEvent<HTMLDivElement>) => {
                 e.stopPropagation();
@@ -164,6 +168,7 @@ export function Body({ currentMonth, days, firstDayOffset, theme, isToday }: Bod
                   isWeekend={isWeekend}
                   isToday={isToday ? isToday(cell.dateObj) : false}
                   hasNote={hasNote}
+                  holiday={holidayMatch}
                   savedRanges={savedRangesList}
                   themeColor={theme.accentColor}
                   onClick={handleCellClick}

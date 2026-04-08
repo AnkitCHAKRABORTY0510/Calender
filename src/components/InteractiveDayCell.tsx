@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 
 export interface InteractiveDayCellProps {
   dateObj: Date;
@@ -11,6 +11,7 @@ export interface InteractiveDayCellProps {
   isWeekend: boolean;
   isToday: boolean;
   hasNote?: boolean;
+  holiday?: { name: string; color: string };
   savedRanges?: { isStart: boolean; isEnd: boolean; hueShift: number }[];
   themeColor: string;
   onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
@@ -33,11 +34,13 @@ export function InteractiveDayCell({
   isWeekend,
   isToday,
   hasNote,
+  holiday,
   savedRanges = [],
   themeColor,
   onClick
 }: InteractiveDayCellProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Raw mouse coordinates relative to center
   const x = useMotionValue(0);
@@ -70,6 +73,7 @@ export function InteractiveDayCell({
   };
 
   const handleMouseLeave = () => {
+    setIsHovered(false);
     x.set(0);
     y.set(0);
   };
@@ -86,12 +90,11 @@ export function InteractiveDayCell({
     color = themeColor;
   }
 
-  // Generate a very subtle shadow only for active cards pulling off the grid structurally
   const hoverConfig = outOfBounds ? {} : {
     scale: 1.15,
     y: -2,
     boxShadow: "0px 8px 16px rgba(0,0,0,0.12)",
-    zIndex: 10
+    zIndex: 999
   };
 
   // Combine active forming selection and native saved mapping layers
@@ -131,6 +134,7 @@ export function InteractiveDayCell({
       <motion.div
         ref={ref}
         onClick={outOfBounds ? undefined : onClick}
+        onMouseEnter={() => setIsHovered(true)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         whileHover={hoverConfig}
@@ -156,6 +160,45 @@ export function InteractiveDayCell({
             className="absolute bottom-[2px] lg:bottom-1 w-[3px] h-[3px] lg:w-1 lg:h-1 rounded-full pointer-events-none"
             style={{ backgroundColor: isSelected ? 'white' : themeColor }}
           />
+        )}
+
+        {/* Render distinctive Holiday dot pinning against the top right structural corner */}
+        {holiday && !outOfBounds && (
+          <>
+            <span 
+              className="absolute top-[2px] right-[2px] w-[3px] h-[3px] lg:top-1 lg:right-1 lg:w-1 lg:h-1 rounded-full shadow-sm"
+              style={{ backgroundColor: holiday.color }}
+            />
+            {/* Custom Interactive Tooltip Card Layer */}
+            <AnimatePresence>
+              {isHovered && (() => {
+                // Determine if we exist on the right-bounding edge of the DOM mapped grid
+                const day = dateObj.getDay();
+                
+                // Track dynamic anchors adjusting explicitly to avoid Desktop webkit 3D engine bounds
+                const anchorStyle = { left: '50%', transformOrigin: 'bottom center' };
+                
+                // Shift tooltip mathematically toward the left to guarantee it never crosses the physical calendar boundary
+                let targetX = "-50%"; 
+                if (day === 0 || day === 6) targetX = "-95%"; // Sat/Sun
+                else if (day === 5) targetX = "-80%"; // Fri
+                else if (day === 4) targetX = "-65%"; // Thu
+
+                return (
+                  <motion.div
+                    initial={{ opacity: 0, y: 5, x: targetX, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, x: targetX, scale: 1 }}
+                    exit={{ opacity: 0, y: 2, x: targetX, scale: 0.95, transition: { duration: 0.15 } }}
+                    className="absolute bottom-full mb-3 lg:mb-4 bg-white backdrop-blur-md px-3 lg:px-4 py-1.5 lg:py-2 rounded-xl shadow-[0_10px_40px_-5px_rgba(0,0,0,0.3)] border border-gray-100 flex items-start gap-2 lg:gap-2.5 pointer-events-none w-max max-w-[200px]"
+                    style={{ ...anchorStyle, zIndex: 9999 }}
+                  >
+                    <span className="w-2 h-2 lg:w-2.5 lg:h-2.5 rounded-full shadow-inner mt-0.5 shrink-0" style={{ backgroundColor: holiday.color }} />
+                    <span className="text-[11px] lg:text-[13px] font-bold text-gray-800 tracking-wide leading-normal">{holiday.name}</span>
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
+          </>
         )}
       </motion.div>
     </div>

@@ -13,7 +13,7 @@ export function Header({ currentMonth, theme }: HeaderProps) {
   const yearStr = currentMonth.getFullYear().toString();
 
   return (
-    <div className="relative w-full h-[55%] z-0 shrink-0">
+    <div className="relative w-full h-[55%] z-0 shrink-0 overflow-hidden rounded-t-[4px]">
 
       {/* ✅ SVG CLIP PATH */}
       <svg width="0" height="0" className="absolute pointer-events-none">

@@ -1,6 +1,6 @@
 # 📅 3D Kinetic Calendar
 <p align="center">
-  <img src="./README-assets/website-screenshot.png" alt="Calendar Interface Screenshot" width="700" />
+  <img src="./README-assets/website-screenshot.png" alt="Calendar Interface Screenshot" width="500" />
 </p>
 
 A beautifully structured, highly interactive print-style digital calendar. Built from the ground up prioritizing fluid kinetic physics, thematic environmental aesthetics, and seamless multi-date spanning logic natively. 
@@ -14,7 +14,7 @@ A beautifully structured, highly interactive print-style digital calendar. Built
 - **Multi-Day Range Selection Tracking:** Clicking multiple distinct dates bridges an overarching selection directly across the internal engine! Spanning dates mechanically interlocks a continuous highlighting ribbon bridging physically underneath the dates. 
 - **Atomic Memo Persistence:** Any contextual text you drop inside a single day, an overarching multi-day range bounds, or into the generic month header is automatically mapped and pinned securely into your local storage database! Overlapping selections mechanically stack isolated color-changing bands intelligently using structural hue rotation!
   <p align="center">
-    <img src="./README-assets/Month-Memo-demo.png" alt="Monthly Memo Storage Demo" width="600" />
+    <img src="./README-assets/Month-Memo-demo.png" alt="Monthly Memo Storage Demo" width="400" />
   </p>
 - **Seasonal Environment Themes:** Every chronological month natively tracks a hardcoded atmospheric ambient image specifically clipped to absolute vector masks bounding against corresponding palette accents mathematically syncing the theme.
 - **Mobile Responsive Anchoring:** Uses explicit `max-width` tracking and structural viewport clamping limits rigorously to safely squeeze the geometry accurately into mobile screens effortlessly without shattering nested grid logic arrays mechanically.

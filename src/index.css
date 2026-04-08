@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3B9FD4;
+  --color-weekend: #5BB8F5;
+  --color-range-fill: #DBEAFE;
+  --shadow-hover-lift: 0px 10px 24px rgba(59, 159, 212, 0.38);
+  --shadow-card: 0 25px 60px rgba(0, 0, 0, 0.18);
+  --radius-card: 16px;
+}
+
+body {
+  background-color: #F0F2F5;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}

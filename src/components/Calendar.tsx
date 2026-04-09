@@ -57,14 +57,24 @@ export function Calendar() {
   const { selectedTheme: nextTheme } = useTheme(nextMonth);
 
   return (
-    <div
+    <motion.div
       className="relative mx-auto flex flex-col font-sans w-full"
       style={{
         maxWidth: 'min(1024px, calc(95dvh * 0.94))',
         height: 'min(720px, 100dvh)',
         // aspectRatio: '1 / 1.5',
         perspective: 1600,
-
+        touchAction: 'pan-y'
+      }}
+      onPanEnd={(_, info) => {
+        // Horizontal Mobile Swipe Gestures
+        if (info.offset.x < -40) {
+          setHoverTease(null);
+          navigate('next'); // Swipe left -> Next page
+        } else if (info.offset.x > 40) {
+          setHoverTease(null);
+          navigate('prev'); // Swipe right -> Previous page
+        }
       }}
     >
       {/* Underlying Stack Layer (always renders the physically next page!) */}
@@ -181,6 +191,6 @@ export function Calendar() {
           }}
         />
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
